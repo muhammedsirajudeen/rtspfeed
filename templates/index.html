@@ -4,10 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./index.css">
-    <script src="./index.js" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <script src="{{ url_for('static', filename='index.js') }}" defer></script>
 </head>
 <body>
-    <h1>Hello World</h1>
+
+    <div class="navbarcontainer">
+        <button class="button"><img src="{{ url_for('static', filename='/images/hamburger.png') }}"/></button>
+        <h1>RTSP FEED</h1>
+    </div>
+
+    <div class="sidedrawercontainer">
+        <div class="sidedrawer-sub-container">
+            <h3>LEAKED CAMERA</h2>
+            {% for item in rtspdata %}
+                
+                <div class="cameracontainer">
+                    <h4>{{item.City}}</h4>
+                    <h4>{{item.District}}</h4>
+                    <div class="viewbutton" url="{{item.Url}}">View</div>
+
+
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
 </body>
 </html>
